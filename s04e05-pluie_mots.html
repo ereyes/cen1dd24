@@ -1,0 +1,96 @@
+<!-- 
+Fait avec l'aide de l'IA (chatgpt 4o, oct.15, 2024)
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Falling Words</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #111;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+    textarea {
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      width: 80%;
+      height: 100px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <textarea id="textInput" placeholder="Paste some text here"></textarea>
+
+  <script>
+    let words = [];
+    let fallingWords = [];
+
+    function setup() {
+      createCanvas(windowWidth, windowHeight);
+      textSize(32);
+      fill(255);
+
+      let input = document.getElementById('textInput');
+      input.addEventListener('paste', handlePaste);
+    }
+
+    function handlePaste(event) {
+      let pastedText = event.clipboardData.getData('text');
+      words = pastedText.split(/\s+/);  // Split text into words
+      fallingWords = [];  // Reset falling words
+
+      // Create falling words from pasted text
+      for (let i = 0; i < words.length; i++) {
+        let word = new FallingWord(words[i], random(width), random(-1000, -50));
+        fallingWords.push(word);
+      }
+    }
+
+    function draw() {
+      background(17, 17, 17);
+
+      // Update and display each falling word
+      for (let i = 0; i < fallingWords.length; i++) {
+        fallingWords[i].fall();
+        fallingWords[i].display();
+      }
+    }
+
+    class FallingWord {
+      constructor(word, x, y) {
+        this.word = word;
+        this.x = x;
+        this.y = y;
+        this.speed = random(2, 6);
+      }
+
+      fall() {
+        this.y += this.speed;
+        if (this.y > height) {
+          this.y = random(-1000, -50);
+          this.speed = random(2, 6);
+        }
+      }
+
+      display() {
+        text(this.word, this.x, this.y);
+      }
+    }
+
+    function windowResized() {
+      resizeCanvas(windowWidth, windowHeight);
+    }
+  </script>
+</body>
+</html>
