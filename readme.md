@@ -11,7 +11,8 @@ https://ereyes.github.io/cen1dd24/s02e01-wikidata.html
 Séance 03 :
 https://ereyes.github.io/cen1dd24/s03e01-albums.html
 
-Séance 04 :
+Séance 04 :  
+
 https://ereyes.github.io/cen1dd24/s04e01-types_graphiques.html  
 
 https://ereyes.github.io/cen1dd24/s04e02-voyant.html  
