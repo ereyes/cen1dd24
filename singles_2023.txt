@@ -1,0 +1,21 @@
+SELECT ?single ?singleLabel ?releaseDate ?genreLabel ?performerLabel ?citizenshipLabel ?coordinates ?youtubeID (SAMPLE(?viewCount) AS ?viewCountSample) WHERE {
+  ?single wdt:P31 wd:Q134556;           # Filter for singles (P31 = instance of single)
+          wdt:P577 ?releaseDate;        # Get the release date (P577 = publication date)
+          wdt:P136 ?genre;              # Get the genre (P136 = genre)
+          wdt:P175 ?performer.          # Get the performer (P175 = performer)
+  
+  ?performer wdt:P27 ?citizenship.       # Get the citizenship of the performer (P27 = country of citizenship)
+  ?citizenship wdt:P625 ?coordinates.    # Get the coordinates for the country (P625 = coordinate location)
+
+    ?single wdt:P1651 ?youtubeID.        # Get YouTube video ID (P1651 = YouTube video ID), if available
+    ?single p:P1651 ?youtubeStmt.        # Access the statement related to YouTube video ID
+    ?youtubeStmt pq:P5436 ?viewCount.    # Get the number of viewers/listeners (P5436) as a qualifier of the YouTube ID statement
+
+  FILTER(YEAR(?releaseDate) = 2023)      # Filter singles released in 2023
+
+  SERVICE wikibase:label {               # Get labels for items
+    bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en".
+  }
+}
+GROUP BY ?single ?singleLabel ?releaseDate ?genreLabel ?performerLabel ?citizenshipLabel ?coordinates ?youtubeID
+ORDER BY ?releaseDate
