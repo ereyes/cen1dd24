@@ -20,3 +20,7 @@ https://ereyes.github.io/cen1dd24/s04e02-voyant.html
 https://ereyes.github.io/cen1dd24/s04e03-p5js.html  
 
 https://ereyes.github.io/cen1dd24/s04e04-pluie_mots.html
+
+Séance 05 :  
+
+https://ereyes.github.io/cen1dd24/s05e01-plotly.html
