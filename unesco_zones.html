@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sites UNESCO en France</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 600px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Map with Points and Circles</h1>
+    <div id="map"></div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <!-- Papa Parse for CSV Parsing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+
+    <script>
+        // Initialize the map
+        const map = L.map('map').setView([47.0, 2.0], 5); // Centered around France
+
+        // Load and display the OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+        }).addTo(map);
+
+        // Path to your CSV file (update this to the correct path if testing locally)
+        const csvFilePath = 'unesco_combo.csv';
+
+        // Function to parse CSV and add points and circles to the map
+        Papa.parse(csvFilePath, {
+            download: true,
+            header: true,
+            complete: function(results) {
+                results.data.forEach(row => {
+                    const lat = parseFloat(row.lat);
+                    const lon = parseFloat(row.lon);
+                    const hectares = parseFloat(row.ha);
+                    const siteName = row.site;
+
+                    // Check if latitude, longitude, and hectares values are valid
+                    if (!isNaN(lat) && !isNaN(lon) && !isNaN(hectares)) {
+                        // Add a marker for each point with a popup showing the site name
+                        const marker = L.marker([lat, lon]).addTo(map);
+                        marker.bindPopup(`<b>Site:</b> ${siteName}`);
+
+                        // Calculate radius in meters from hectares (1 hectare = 10,000 square meters)
+                        const radius = Math.sqrt(hectares * 100000 / Math.PI); // Convert area to radius
+                        L.circle([lat, lon], {
+                            radius: radius, // radius in meters
+                            color: 'blue',
+                            fillColor: 'blue',
+                            fillOpacity: 0.2,
+                        }).addTo(map);
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
