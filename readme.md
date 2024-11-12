@@ -24,3 +24,11 @@ https://ereyes.github.io/cen1dd24/s04e04-pluie_mots.html
 Séance 05 :  
 
 https://ereyes.github.io/cen1dd24/s05e01-plotly.html
+
+
+Séance 07 :   
+
+https://ereyes.github.io/cen1dd24/s07e01-unesco_zones.html
+
+https://ereyes.github.io/cen1dd24/s07e02-circle_packing.html
+
