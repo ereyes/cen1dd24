@@ -36,6 +36,9 @@ https://ereyes.github.io/cen1dd24/s07e02-circle_packing.html
 Séance 08 :   
 https://ereyes.github.io/cen1dd24/s08e01-barres.html   
 https://ereyes.github.io/cen1dd24/s08e02-plot.html   
+s08-e03-figures_svg.html   
+
+
 
 
 
