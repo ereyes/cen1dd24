@@ -38,7 +38,7 @@ https://ereyes.github.io/cen1dd24/s08e01-barres.html
 https://ereyes.github.io/cen1dd24/s08e02-plot.html   
 https://ereyes.github.io/cen1dd24/s08-e03-figures_svg.html   
 
-Séance 09 :
+Séance 09 :   
 https://ereyes.github.io/cen1dd24/s09e01-reseaux.html   
 
 
